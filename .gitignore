@@ -1,0 +1,22 @@
+# --- Security & Credentials ---
+.cache
+.cache-*
+auth_token
+config.yml
+state.json
+.env
+
+# --- Python Environment ---
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# --- OS Junk ---
+.DS_Store
+Thumbs.db
+
+# --- Project Specific Binaries ---
+go-librespot
+go-librespot-arm64
+ffmpeg
