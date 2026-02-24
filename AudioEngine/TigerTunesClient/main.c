@@ -21,7 +21,7 @@
 #endif
 
 #define BUFFER_SIZE 524288  // Much larger: 256KB ring buffer
-#define SERVER_IP "10.0.0.16"
+#define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 5001
 #define MIN_BUFFER_FILL 131072  // Start when we have 32KB buffered
 #define MAX_BUFFER_FILL 458752 // Stop filling when we have 224KB (leave headroom)
