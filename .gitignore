@@ -11,6 +11,7 @@ venv/
 env/
 __pycache__/
 *.py[cod]
+lockfile
 
 # --- OS Junk ---
 .DS_Store

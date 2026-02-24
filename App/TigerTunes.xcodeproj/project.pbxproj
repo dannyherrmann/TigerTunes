@@ -1,0 +1,408 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		711FEC0B2F495C4100709902 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FEC062F495C4100709902 /* CJSONDeserializer.m */; };
+		711FEC0C2F495C4100709902 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FEC082F495C4100709902 /* CJSONScanner.m */; };
+		711FEC0D2F495C4100709902 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FEC0A2F495C4100709902 /* CJSONSerializer.m */; };
+		711FEC132F495C8300709902 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FEC102F495C8300709902 /* CDataScanner_Extensions.m */; };
+		711FEC142F495C8300709902 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FEC122F495C8300709902 /* CDataScanner.m */; };
+		711FEC172F495CA400709902 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FEC162F495CA400709902 /* NSDictionary_JSONExtensions.m */; };
+		7120C7AA2F2C570E00E01B47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7120C7A92F2C570E00E01B47 /* AppDelegate.m */; };
+		7120C7AC2F2C570E00E01B47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7120C7AB2F2C570E00E01B47 /* main.m */; };
+		7120C7AE2F2C570E00E01B47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7120C7AD2F2C570E00E01B47 /* Images.xcassets */; };
+		7120C7B12F2C570E00E01B47 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7120C7AF2F2C570E00E01B47 /* MainMenu.xib */; };
+		7120C7C72F2C5CA900E01B47 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7120C7C62F2C5CA900E01B47 /* Foundation.framework */; };
+		7120C7C92F2C5CAF00E01B47 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7120C7C82F2C5CAE00E01B47 /* Cocoa.framework */; };
+		7120C7CB2F2C5CB500E01B47 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7120C7CA2F2C5CB500E01B47 /* CoreFoundation.framework */; };
+		7120C7CD2F2C5CBB00E01B47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7120C7CC2F2C5CBB00E01B47 /* SystemConfiguration.framework */; };
+		713660882F319BED00468D96 /* ITunesLCDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713660872F319BED00468D96 /* ITunesLCDView.m */; };
+		714650DB2F4AD0D800365185 /* TigerTunesClient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 714650D92F4AD0CE00365185 /* TigerTunesClient */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		715E83122F3D832E00E9D662 /* WinampButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E83112F3D832E00E9D662 /* WinampButton.m */; };
+		7170A7252F4D54F4008D4F24 /* TigerTunes.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7170A7242F4D54F4008D4F24 /* TigerTunes.icns */; };
+		719B63F92F48202A00C53786 /* TTScrollingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B63F82F48202A00C53786 /* TTScrollingTextField.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7120C7D02F2C665B00E01B47 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				714650DB2F4AD0D800365185 /* TigerTunesClient in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		711FEC052F495C4100709902 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		711FEC062F495C4100709902 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		711FEC072F495C4100709902 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		711FEC082F495C4100709902 /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		711FEC092F495C4100709902 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		711FEC0A2F495C4100709902 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		711FEC0E2F495C6000709902 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		711FEC0F2F495C8300709902 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		711FEC102F495C8300709902 /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		711FEC112F495C8300709902 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		711FEC122F495C8300709902 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		711FEC152F495CA400709902 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		711FEC162F495CA400709902 /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		7120C7A32F2C570E00E01B47 /* TigerTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TigerTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7120C7A72F2C570E00E01B47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7120C7A82F2C570E00E01B47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7120C7A92F2C570E00E01B47 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7120C7AB2F2C570E00E01B47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7120C7AD2F2C570E00E01B47 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7120C7B02F2C570E00E01B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7120C7C62F2C5CA900E01B47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7120C7C82F2C5CAE00E01B47 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		7120C7CA2F2C5CB500E01B47 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		7120C7CC2F2C5CBB00E01B47 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		713660872F319BED00468D96 /* ITunesLCDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITunesLCDView.m; sourceTree = "<group>"; };
+		714650D92F4AD0CE00365185 /* TigerTunesClient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = TigerTunesClient; sourceTree = "<group>"; };
+		715E83102F3D832E00E9D662 /* WinampButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinampButton.h; sourceTree = "<group>"; };
+		715E83112F3D832E00E9D662 /* WinampButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinampButton.m; sourceTree = "<group>"; };
+		7170A7242F4D54F4008D4F24 /* TigerTunes.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TigerTunes.icns; sourceTree = "<group>"; };
+		719B63F72F48202A00C53786 /* TTScrollingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTScrollingTextField.h; sourceTree = "<group>"; };
+		719B63F82F48202A00C53786 /* TTScrollingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTScrollingTextField.m; sourceTree = "<group>"; };
+		71F312122F4BB6010092134E /* ITunesLCDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITunesLCDView.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7120C7A02F2C570E00E01B47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7120C7CD2F2C5CBB00E01B47 /* SystemConfiguration.framework in Frameworks */,
+				7120C7CB2F2C5CB500E01B47 /* CoreFoundation.framework in Frameworks */,
+				7120C7C92F2C5CAF00E01B47 /* Cocoa.framework in Frameworks */,
+				7120C7C72F2C5CA900E01B47 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		711FEC032F495BFE00709902 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				711FEC042F495C0A00709902 /* JSON */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		711FEC042F495C0A00709902 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				711FEC152F495CA400709902 /* NSDictionary_JSONExtensions.h */,
+				711FEC162F495CA400709902 /* NSDictionary_JSONExtensions.m */,
+				711FEC0F2F495C8300709902 /* CDataScanner_Extensions.h */,
+				711FEC102F495C8300709902 /* CDataScanner_Extensions.m */,
+				711FEC112F495C8300709902 /* CDataScanner.h */,
+				711FEC122F495C8300709902 /* CDataScanner.m */,
+				711FEC0E2F495C6000709902 /* JSONRepresentation.h */,
+				711FEC052F495C4100709902 /* CJSONDeserializer.h */,
+				711FEC062F495C4100709902 /* CJSONDeserializer.m */,
+				711FEC072F495C4100709902 /* CJSONScanner.h */,
+				711FEC082F495C4100709902 /* CJSONScanner.m */,
+				711FEC092F495C4100709902 /* CJSONSerializer.h */,
+				711FEC0A2F495C4100709902 /* CJSONSerializer.m */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		7120C79A2F2C570E00E01B47 = {
+			isa = PBXGroup;
+			children = (
+				714650D92F4AD0CE00365185 /* TigerTunesClient */,
+				7120C7CC2F2C5CBB00E01B47 /* SystemConfiguration.framework */,
+				7120C7CA2F2C5CB500E01B47 /* CoreFoundation.framework */,
+				7120C7C82F2C5CAE00E01B47 /* Cocoa.framework */,
+				7120C7C62F2C5CA900E01B47 /* Foundation.framework */,
+				7120C7A52F2C570E00E01B47 /* TigerTunes */,
+				7120C7A42F2C570E00E01B47 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7120C7A42F2C570E00E01B47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7120C7A32F2C570E00E01B47 /* TigerTunes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7120C7A52F2C570E00E01B47 /* TigerTunes */ = {
+			isa = PBXGroup;
+			children = (
+				7170A7242F4D54F4008D4F24 /* TigerTunes.icns */,
+				711FEC032F495BFE00709902 /* Libraries */,
+				713660872F319BED00468D96 /* ITunesLCDView.m */,
+				71F312122F4BB6010092134E /* ITunesLCDView.h */,
+				719B63F72F48202A00C53786 /* TTScrollingTextField.h */,
+				719B63F82F48202A00C53786 /* TTScrollingTextField.m */,
+				7120C7A82F2C570E00E01B47 /* AppDelegate.h */,
+				7120C7A92F2C570E00E01B47 /* AppDelegate.m */,
+				7120C7AD2F2C570E00E01B47 /* Images.xcassets */,
+				7120C7AF2F2C570E00E01B47 /* MainMenu.xib */,
+				715E83102F3D832E00E9D662 /* WinampButton.h */,
+				715E83112F3D832E00E9D662 /* WinampButton.m */,
+				7120C7A62F2C570E00E01B47 /* Supporting Files */,
+			);
+			path = TigerTunes;
+			sourceTree = "<group>";
+		};
+		7120C7A62F2C570E00E01B47 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7120C7A72F2C570E00E01B47 /* Info.plist */,
+				7120C7AB2F2C570E00E01B47 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7120C7A22F2C570E00E01B47 /* TigerTunes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7120C7C02F2C570E00E01B47 /* Build configuration list for PBXNativeTarget "TigerTunes" */;
+			buildPhases = (
+				7120C79F2F2C570E00E01B47 /* Sources */,
+				7120C7A02F2C570E00E01B47 /* Frameworks */,
+				7120C7A12F2C570E00E01B47 /* Resources */,
+				7120C7D02F2C665B00E01B47 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TigerTunes;
+			productName = "Spotify-PPC";
+			productReference = 7120C7A32F2C570E00E01B47 /* TigerTunes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7120C79B2F2C570E00E01B47 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Danny Herrmann";
+				TargetAttributes = {
+					7120C7A22F2C570E00E01B47 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = 7120C79E2F2C570E00E01B47 /* Build configuration list for PBXProject "TigerTunes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7120C79A2F2C570E00E01B47;
+			productRefGroup = 7120C7A42F2C570E00E01B47 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7120C7A22F2C570E00E01B47 /* TigerTunes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7120C7A12F2C570E00E01B47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7120C7AE2F2C570E00E01B47 /* Images.xcassets in Resources */,
+				7120C7B12F2C570E00E01B47 /* MainMenu.xib in Resources */,
+				7170A7252F4D54F4008D4F24 /* TigerTunes.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7120C79F2F2C570E00E01B47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				711FEC172F495CA400709902 /* NSDictionary_JSONExtensions.m in Sources */,
+				711FEC0B2F495C4100709902 /* CJSONDeserializer.m in Sources */,
+				7120C7AC2F2C570E00E01B47 /* main.m in Sources */,
+				715E83122F3D832E00E9D662 /* WinampButton.m in Sources */,
+				711FEC0D2F495C4100709902 /* CJSONSerializer.m in Sources */,
+				711FEC142F495C8300709902 /* CDataScanner.m in Sources */,
+				7120C7AA2F2C570E00E01B47 /* AppDelegate.m in Sources */,
+				711FEC132F495C8300709902 /* CDataScanner_Extensions.m in Sources */,
+				719B63F92F48202A00C53786 /* TTScrollingTextField.m in Sources */,
+				713660882F319BED00468D96 /* ITunesLCDView.m in Sources */,
+				711FEC0C2F495C4100709902 /* CJSONScanner.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7120C7AF2F2C570E00E01B47 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7120C7B02F2C570E00E01B47 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7120C7BE2F2C570E00E01B47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7120C7BF2F2C570E00E01B47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7120C7C12F2C570E00E01B47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TigerTunes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = TigerTunes;
+				SDKROOT = macosx10.5;
+				VALID_ARCHS = "i386 ppc ppc7400 ppc970 x86_64";
+			};
+			name = Debug;
+		};
+		7120C7C22F2C570E00E01B47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					x86_64,
+					i386,
+					ppc,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TigerTunes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = TigerTunes;
+				SDKROOT = macosx10.5;
+				VALID_ARCHS = "i386 ppc ppc7400 ppc970 x86_64";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7120C79E2F2C570E00E01B47 /* Build configuration list for PBXProject "TigerTunes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7120C7BE2F2C570E00E01B47 /* Debug */,
+				7120C7BF2F2C570E00E01B47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7120C7C02F2C570E00E01B47 /* Build configuration list for PBXNativeTarget "TigerTunes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7120C7C12F2C570E00E01B47 /* Debug */,
+				7120C7C22F2C570E00E01B47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7120C79B2F2C570E00E01B47 /* Project object */;
+}

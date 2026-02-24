@@ -1,0 +1,266 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71A6471B2F2A7CDB002D679D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 71A6471A2F2A7CDB002D679D /* main.c */; };
+		71A647242F2A7DBB002D679D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A647232F2A7DBB002D679D /* CoreFoundation.framework */; };
+		71A647262F2A98C3002D679D /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A647252F2A98C3002D679D /* AudioUnit.framework */; };
+		71A647282F2A98EB002D679D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A647272F2A98EB002D679D /* CoreAudio.framework */; };
+		71A6472A2F2A9993002D679D /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A647292F2A9993002D679D /* CoreServices.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		71A647152F2A7CDB002D679D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		71A647172F2A7CDB002D679D /* TigerTunesClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TigerTunesClient; sourceTree = BUILT_PRODUCTS_DIR; };
+		71A6471A2F2A7CDB002D679D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		71A647232F2A7DBB002D679D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		71A647252F2A98C3002D679D /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
+		71A647272F2A98EB002D679D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
+		71A647292F2A9993002D679D /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71A647142F2A7CDB002D679D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A6472A2F2A9993002D679D /* CoreServices.framework in Frameworks */,
+				71A647282F2A98EB002D679D /* CoreAudio.framework in Frameworks */,
+				71A647262F2A98C3002D679D /* AudioUnit.framework in Frameworks */,
+				71A647242F2A7DBB002D679D /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71A6470E2F2A7CDB002D679D = {
+			isa = PBXGroup;
+			children = (
+				71A647292F2A9993002D679D /* CoreServices.framework */,
+				71A647272F2A98EB002D679D /* CoreAudio.framework */,
+				71A647252F2A98C3002D679D /* AudioUnit.framework */,
+				71A647232F2A7DBB002D679D /* CoreFoundation.framework */,
+				71A647192F2A7CDB002D679D /* TigerTunesClient */,
+				71A647182F2A7CDB002D679D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		71A647182F2A7CDB002D679D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71A647172F2A7CDB002D679D /* TigerTunesClient */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		71A647192F2A7CDB002D679D /* TigerTunesClient */ = {
+			isa = PBXGroup;
+			children = (
+				71A6471A2F2A7CDB002D679D /* main.c */,
+			);
+			path = TigerTunesClient;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71A647162F2A7CDB002D679D /* TigerTunesClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71A6471E2F2A7CDB002D679D /* Build configuration list for PBXNativeTarget "TigerTunesClient" */;
+			buildPhases = (
+				71A647132F2A7CDB002D679D /* Sources */,
+				71A647142F2A7CDB002D679D /* Frameworks */,
+				71A647152F2A7CDB002D679D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TigerTunesClient;
+			productName = TigerTunesClient;
+			productReference = 71A647172F2A7CDB002D679D /* TigerTunesClient */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71A6470F2F2A7CDB002D679D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Danny Herrmann";
+				TargetAttributes = {
+					71A647162F2A7CDB002D679D = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = 71A647122F2A7CDB002D679D /* Build configuration list for PBXProject "TigerTunesClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 71A6470E2F2A7CDB002D679D;
+			productRefGroup = 71A647182F2A7CDB002D679D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71A647162F2A7CDB002D679D /* TigerTunesClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71A647132F2A7CDB002D679D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A6471B2F2A7CDB002D679D /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		71A6471C2F2A7CDB002D679D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		71A6471D2F2A7CDB002D679D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		71A6471F2F2A7CDB002D679D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_VERSION = 4.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		71A647202F2A7CDB002D679D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					x86_64,
+					i386,
+					ppc,
+				);
+				GCC_VERSION = 4.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		71A647122F2A7CDB002D679D /* Build configuration list for PBXProject "TigerTunesClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71A6471C2F2A7CDB002D679D /* Debug */,
+				71A6471D2F2A7CDB002D679D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71A6471E2F2A7CDB002D679D /* Build configuration list for PBXNativeTarget "TigerTunesClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71A6471F2F2A7CDB002D679D /* Debug */,
+				71A647202F2A7CDB002D679D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 71A6470F2F2A7CDB002D679D /* Project object */;
+}
