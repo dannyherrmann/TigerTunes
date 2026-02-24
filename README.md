@@ -11,7 +11,7 @@ TigerTunes is a lightweight, dual-part audio architecture designed to bring high
 Modern streaming services require heavy encryption (AES/EME) and security certificates that "vintage" CPUs cannot process in real-time. 
 
 **TigerTunes** solves this by splitting the workload:
-* **The Bridge (Modern Mac):** Handles the "heavy lifting"—Spotify authentication, metadata fetching, and audio transcoding into a raw PCM stream.
+* **The Bridge (Modern Mac):** Handles the "heavy lifting" - Spotify authentication, metadata fetching, and audio transcoding into a raw PCM stream.
 * **The Client (Legacy Mac):** A native, "Lean and Mean" Objective-C application that receives the raw audio stream and displays metadata with almost zero CPU overhead.
 
 ---
@@ -71,11 +71,24 @@ Once both steps are complete, your bridge is fully operational:
 
 ---
 
+## 🎧 Usage
+
+Once the Bridge server is authenticated and running, you do not need to manually select "TigerTunes" in your official Spotify app. The connection happens automatically:
+
+1. **Launch the Client:** Start the **TigerTunes app** on your legacy PowerPC or Intel Mac.
+2. **Auto-Discovery:** The client will use Bonjour to find your Bridge and automatically "take control" of the TigerTunes Spotify Connect device.
+3. **The Handshake:** The Bridge immediately instructs Spotify to begin playback through its engine.
+4. **The Stream:** High-quality audio is transcoded on the fly and sent over a high-speed TCP socket directly to your legacy Mac's sound card.
+
+> **Tip:** You can still use the official Spotify app on your phone as a "remote control" to skip tracks or change playlists, and the changes will reflect instantly on your vintage Mac's screen!
+
+---
+
 ### ⚙️ Configuration & Customization
 On its first run, the Bridge creates a `config.yml` file inside your `TigerTunes-Bridge-ARM64` folder. 
 
 * **Custom Device Name:** By default, your bridge appears as "TigerTunes." If you want it to show up as "iMac G4" or "G4 Cube," open `config.yml` in a text editor, update the `device_name` field, and restart the bridge.
-* **Persistence:** Your login credentials are saved locally in this directory within .cache for TigerTunes and state.json for go-librespot. You won't need to perform the Two-Step Authentication again unless you move the folder or change accounts.
+* **Persistence:** Your Spotify login credentials are saved locally in this directory within the `.cache` file for the TigerTunes metadata and the `state.json` file for the go-librespot audio backend. You won't need to perform the Two-Step Authentication again unless you move the folder or change accounts.
 
 ---
 
