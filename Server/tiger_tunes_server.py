@@ -77,12 +77,19 @@ auth_manager = SpotifyPKCE(
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
 def check_dependencies():
-    deps = ['ffmpeg', 'go-librespot']
-    for dep in deps:
-        if not os.path.exists(dep):
-            print(f"❌ Error: {dep} not found in the Server directory.")
-            print("Please download the binary for your architecture and place it here.")
+    # Use your existing get_resource_path to find the internal files
+    deps = [get_resource_path('ffmpeg'), get_resource_path('go-librespot')]
+    
+    for dep_path in deps:
+        if not os.path.exists(dep_path):
+            # Extract name for a clean error message
+            name = os.path.basename(dep_path)
+            print(f"❌ Error: {name} not found inside the application bundle.")
             sys.exit(1)
+        else:
+            # IMPORTANT: Force executable permissions on macOS
+            # Sometimes PyInstaller loses the '+x' bit during extraction
+            os.chmod(dep_path, 0o755)
 
 @app.route('/connect')
 def connect_to_g4():
