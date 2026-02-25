@@ -364,11 +364,8 @@
 }
 
 - (void)handleRemoteEvent:(NSString *)json {
-    // 1. Convert NSString to NSData for the parser
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
-    
-    // 2. Parse the JSON into a Dictionary
     NSDictionary *fullDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&error];
     
     if (error || !fullDict) {
@@ -377,61 +374,58 @@
     }
 
     NSString *type = [fullDict objectForKey:@"type"];
-    NSDictionary *data = [fullDict objectForKey:@"data"]; // Most metadata lives inside this "data" block
+    NSDictionary *data = [fullDict objectForKey:@"data"];
 
-    // Basic UI cleanup
-    [playPauseButton setEnabled:YES];
-    [nextButton setEnabled:YES];
-    [previousButton setEnabled:YES];
+    // --- CASE 5: INACTIVE (Playback Transferred Away) ---
+    // We check this FIRST to lock the UI down before any other processing
+    if ([type isEqualToString:@"inactive"]) {
+        NSLog(@"🔄 Playback Transferred Away - Entering Passive Mode");
+        [self performSelectorOnMainThread:@selector(stopDriftTimer) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(resetUIForInactiveState) withObject:nil waitUntilDone:NO];
+        return; // EXIT EARLY: Do not re-enable buttons
+    }
 
     // --- CASE 1: METADATA RECEIVED ---
     if ([type isEqualToString:@"metadata"]) {
-        NSLog(@"🎵 New Metadata Received (via CJSON)");
-        currentTrackPositionMs = 0;
+        NSLog(@"🎵 New Metadata Received");
+        
+        // RE-ENABLE CONTROLS: Now that we have fresh track data, it's safe to use buttons again
+        [self performSelectorOnMainThread:@selector(enableControls) withObject:nil waitUntilDone:NO];
 
-        // CJSON handles the \u0026 escapes automatically here!
+        currentTrackPositionMs = 0;
         NSString *trackName = [data objectForKey:@"name"];
         NSArray *artistNames = [data objectForKey:@"artist_names"];
         NSString *artistName = (artistNames && [artistNames count] > 0) ? [artistNames objectAtIndex:0] : @"Unknown Artist";
-        NSString *albumName = [data objectForKey:@"album_name"];
         NSString *artURL = [data objectForKey:@"album_cover_url"];
         
-        // Handling nested numbers (duration/position)
         NSNumber *durationNum = [data objectForKey:@"duration"];
         if (durationNum) currentTrackDurationMs = [durationNum longLongValue];
 
         NSNumber *posNum = [data objectForKey:@"position"];
         if (posNum) currentTrackPositionMs = [posNum longValue];
 
-        // Update Labels (Main Thread)
         if (trackName) {
             [trackNameLabel performSelectorOnMainThread:@selector(setStringValue:) withObject:trackName waitUntilDone:NO];
             [trackNameLabel performSelectorOnMainThread:@selector(startScrolling) withObject:nil waitUntilDone:NO];
         }
         if (artistName) [artistLabel performSelectorOnMainThread:@selector(setStringValue:) withObject:artistName waitUntilDone:NO];
-
         if (artURL && [artURL length] > 0) {
             [self performSelectorOnMainThread:@selector(downloadAndDisplayAlbumArt:) withObject:artURL waitUntilDone:NO];
         }
     }
     
     // --- CASE 2: PLAYING ---
-    // Find Case 2: PLAYING and change to this:
     else if ([type isEqualToString:@"playing"]) {
         isPlaying = YES;
         NSString *ctxURI = [data objectForKey:@"context_uri"];
-        
-        // Remove the "if airplay" check entirely
         if (ctxURI && ![ctxURI isEqualToString:@"null"]) {
-            NSLog(@"✅ Triggering Spotify lookup for: %@", ctxURI);
             [self fetchEnrichedStatus:ctxURI];
         }
-        
         [self performSelectorOnMainThread:@selector(startDriftTimer) withObject:nil waitUntilDone:NO];
         [playPauseButton performSelectorOnMainThread:@selector(setTitle:) withObject:@"⏸" waitUntilDone:NO];
     }
     
-    // --- CASE 3: PAUSED ---
+    // --- CASE 3: PAUSED / NOT PLAYING ---
     else if ([type isEqualToString:@"paused"] || [type isEqualToString:@"not_playing"]) {
         isPlaying = NO;
         [self performSelectorOnMainThread:@selector(stopDriftTimer) withObject:nil waitUntilDone:NO];
@@ -441,11 +435,40 @@
     // --- CASE 4: SEEK ---
     else if ([type isEqualToString:@"seek"]) {
         NSNumber *posNum = [data objectForKey:@"position"];
-        if (posNum) {
-            currentTrackPositionMs = [posNum longValue];
-        }
+        if (posNum) currentTrackPositionMs = [posNum longValue];
         [self performSelectorOnMainThread:@selector(updateProgressBarUI) withObject:nil waitUntilDone:NO];
     }
+    
+    // --- CASE 6: STOPPED ---
+    else if ([type isEqualToString:@"stopped"]) {
+        isPlaying = NO;
+        [self performSelectorOnMainThread:@selector(stopDriftTimer) withObject:nil waitUntilDone:NO];
+        [playPauseButton performSelectorOnMainThread:@selector(setTitle:) withObject:@"▶︎" waitUntilDone:NO];
+        [progressBar performSelectorOnMainThread:@selector(setProgress:) withObject:[NSNumber numberWithDouble:0.0] waitUntilDone:NO];
+    }
+}
+
+// Helper: Cleans the UI and locks the buttons to prevent go-librespot crashes
+- (void)resetUIForInactiveState {
+    [trackNameLabel setStringValue:@""];
+    [artistLabel setStringValue:@""];
+    [contextLabel setStringValue:@"Playback Transferred"];
+    [contextLabel setHidden:NO];
+    [startLabel setStringValue:@""];
+    [endLabel setStringValue:@""];
+    [progressBar setProgress:0.0];
+    [albumArtView setImage:nil];
+    
+    [playPauseButton setEnabled:NO];
+    [nextButton setEnabled:NO];
+    [previousButton setEnabled:NO];
+}
+
+// Helper: Re-unlocks the UI when a valid local track is loaded
+- (void)enableControls {
+    [playPauseButton setEnabled:YES];
+    [nextButton setEnabled:YES];
+    [previousButton setEnabled:YES];
 }
 
 - (void)fetchEnrichedStatus:(NSString *)uri {
