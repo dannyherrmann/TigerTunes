@@ -10,15 +10,9 @@ TigerTunes breathes new life into "Golden Era" Apple hardware. It transforms you
 
 I wanted to turn my legacy Macs into something useful again - not just a shelf ornament, but a high-fidelity **Spotify Connect Speaker**. 
 
-* **Native at Heart:** This isn't a clunky web wrapper or a slow VNC hack. It’s a native Cocoa app that feels exactly like the software we loved in 2005.
-* **Modern Control:** You get the best of both worlds. Use your iPhone as a remote to skip tracks and change playlists, while the legacy Mac handles the "physical" experience of the music.
-* **Reviving the Soul:** Whether it's the Pro Speakers on a G4 or the internal hardware of a G5, these Macs still sound incredible. TigerTunes finally gives them something to say again.
-
 * **Native Aesthetics:** No clunky web browsers or VNC. A pure, native Cocoa app that looks right at home on Mac OS X Tiger 10.4.
 * **Modern Control:** Your legacy Mac appears in the **Devices** list of your modern Spotify app just like a Sonos or Echo.
 * **Lossless-Style Pipe:** We bypass the aging security hardware of the G4/G5 and stream raw PCM audio directly to the sound card for maximum performance and zero CPU lag.
-
-
 
 ---
 
