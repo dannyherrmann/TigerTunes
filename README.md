@@ -24,10 +24,12 @@ I wanted to turn my legacy Macs into something useful again - not just a shelf o
 
 ## 🛠 How it Works: The "Bridge & Speaker" Setup
 
-Spotify's modern encryption is too heavy for vintage CPUs to process. TigerTunes solves this with a dual-part "Relay" architecture:
+Spotify's modern encryption and metadata heavy-lifting are too taxing for vintage CPUs. TigerTunes solves this with a dual-part "Relay" architecture that prioritizes efficiency:
 
-1.  **The Bridge (Modern Mac):** Acts as the "Smart Brain." It handles the SSL handshakes, OAuth authentication, and metadata fetching.
-2.  **The Speaker (Legacy Mac):** Acts as the "Voice." It runs a native Objective-C client that receives the raw audio stream and displays metadata with almost zero overhead.
+1.  **The Bridge (Modern Mac):** Acts as the "Smart Brain." It handles the SSL handshakes, OAuth authentication, and transcode processing.
+2.  **The Speaker (Legacy Mac):** Acts as the "Voice." It runs a native Objective-C client and a lightweight C-based audio backend.
+    * **Ultra-Low Overhead:** Because the legacy client connects to the Bridge via go-librespot's high-speed WebSocket API, the UI consumes **virtually 0% CPU**. 
+    * **Lean Audio:** The C audio client responsible for processing the raw PCM stream is highly optimized, typically consuming only **2-3% CPU** on a standard G4.
 
 ---
 
@@ -45,13 +47,24 @@ Spotify's modern encryption is too heavy for vintage CPUs to process. TigerTunes
 ## 🚀 Quick Start: 3 Steps to Music
 
 ### 1. Setup the Bridge (Modern Mac)
-The Bridge handles the heavy lifting. It is signed and notarized, so installation is seamless.
+The Bridge handles the heavy lifting. It is signed and notarized with Apple, so installation is seamless.
 * **Install:** Download `TigerTunesBridge-Installer.dmg` from [Releases](https://github.com/dannyherrmann/TigerTunes/releases). Open the DMG and drag the app to your **Applications** folder.
 * **Launch:** Open the app. Because it is notarized, macOS will confirm it was scanned for malware; click **Open**.
 * **Connect & Auth:** Click the **Connect** button. Two browser windows will appear:
     1. **Web API:** Log in and click **Agree** for "TigerTunes" metadata access.
     2. **Streaming Engine:** Click **"Continue to the app"** to enable the audio backend.
 * **Ready:** The app will display: *"Authenticated! Open TigerTunes on your legacy Mac now."*
+
+### 1. Setup the Bridge (Modern Mac)
+The Bridge handles the heavy lifting and **creates a new Spotify Connect device named "TigerTunes"** on your network.
+* **Install:** Download `TigerTunesBridge-Installer.dmg` from [Releases](https://github.com/dannyherrmann/TigerTunes/releases). Open the DMG and drag the app to your **Applications** folder.
+* **Launch:** Open the app. Because it is notarized, macOS will confirm it was scanned for malware; click **Open**.
+* **Connect & Auth:** Click the **Connect** button. Two browser windows will appear:
+    1. **Web API:** Log in and click **Agree** for "TigerTunes" metadata access.
+    2. **Streaming Engine:** Click **"Continue to the app"** to enable the audio backend.
+* **Ready:** The Bridge app will display: *"Authenticated! Open TigerTunes on your legacy Mac now."*
+* **Verification:** You should now see **"TigerTunes"** appear as an available device in the official Spotify app on your phone or desktop. 
+    * **Note:** You do not need to manually connect to the device yet; the Legacy Client will handle this automatically once launched!
 
 ### 2. Wake the Speaker (Legacy Mac)
 Now, move over to your vintage hardware to complete the link.
@@ -76,7 +89,53 @@ This is where the magic happens. You don't even need to select a device.
 
 ---
 
+## ⚙️ Bridge Configuration"
+
+### Rename your "Speaker"
+By default, the Spotify connect device created by the bridge will appear in Spotify as **"TigerTunes"**. If you want it to match your specific hardware (e.g., "iMac G4"), you can change the name manually:
+
+1. **Quit** the TigerTunesBridge app on your modern Mac.
+2. Go to your **Applications** folder, right-click `TigerTunesBridge.app`, and select **Show Package Contents**.
+3. Navigate to `Contents/Resources/` and find the `config.yml` file.
+4. Open `config.yml` with **TextEdit**.
+5. Change the `device_name` value to your preferred name (e.g., `device_name: "iMac G4"`).
+6. **Save** the file and restart the Bridge app. Your legacy Mac will now appear with its custom name in the Spotify Devices menu!
+
+### How to Log Out / Switch Accounts on the bridge
+The Tiger Tunes Bridge arm64 app stores your Spotify Oauth credentials locally so you don't have to log in every time you open the bridge app on your modern Mac. If you need to log out or switch to a different Spotify Premium account:
+
+1. **Quit** the TigerTunesBridge app.
+2. Navigate to the `Contents/Resources/` folder inside the app bundle (Right-click app > **Show Package Contents**).
+3. **Show Hidden Files:** Since the auth files are hidden, press `Command + Shift + Period (.)` on your keyboard to reveal them.
+4. **Delete** the following two files:
+    * `.cache` (Stores the Web API/Metadata auth)
+    * `state.json` (Stores the go-librespot audio engine auth)
+5. Restart the app. It will now prompt you for a fresh login.
+
+---
+
 ### ⚠️ Troubleshooting
 * **Same Network:** Both the Bridge and the Speaker must be on the same local network (Wi-Fi or Ethernet).
 * **Firewall:** Ensure your modern Mac allows incoming connections for `TigerTunesBridge`.
 * **Apple Silicon Only:** The current Bridge release is built for **ARM64**. Support for Intel-based Modern Macs is currently in development.
+
+---
+
+## ⚠️ Technical Limitations & Expectations
+
+Because TigerTunes relies on the open-source **go-librespot** engine, there are a few technical trade-offs to keep in mind:
+
+* **No Lossless/FLAC Audio:** Spotify's HiFi/Lossless tier is not supported. Audio is streamed at high-quality Ogg Vorbis (up to 320kbps), which is then transcoded to PCM for your vintage Mac. This still sounds incredible on G4 Pro Speakers!
+* **No "Spotify Wrapped" Reporting:** Due to the way the open-source engine connects, playback through TigerTunes does not currently report "Listen History" to Spotify. If you are an avid Spotify Wrapped fan, keep in mind these sessions won't count toward your end-of-year stats.
+* **Premium Required:** Like almost all librespot-based projects, a **Spotify Premium** account is required to use the Connect protocol.
+
+---
+
+## 🤝 Credits & Shoutouts
+
+TigerTunes is a labor of love that wouldn't be possible without the incredible work of the open-source community. Special thanks to the following projects:
+
+* **[go-librespot](https://github.com/devgianlu/go-librespot)**: The powerful Go-based Spotify library that serves as our high-fidelity audio engine.
+* **[FFmpeg](https://github.com/FFmpeg/FFmpeg)**: The "Swiss Army Knife" of audio, used to transcode Spotify's streams into a format legacy Macs can handle without breaking a sweat.
+* **[dosdude1's discord-lite](https://github.com/dosdude1/discord-lite)**: A massive inspiration for this project. 
+    * Specifically, I want to shout out his implementation of the **TouchCode JSON** library and his approach to handling user avatars. I utilized similar patterns to handle Spotify profile images and metadata in a non-ARC Objective-C environment, ensuring smooth performance on vintage hardware.
