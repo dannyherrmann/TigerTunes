@@ -2,7 +2,9 @@
 
 ### **Turn your Legacy Mac into a high-fidelity Spotify Connect speaker.**
 
-TigerTunes breathes new life into "Golden Era" Apple hardware. It transforms your vintage PowerPC or Intel Mac into a native Spotify Connect device, controllable from any modern phone, tablet, or computer.
+TigerTunes transforms your vintage PowerPC or Intel Mac into a native Spotify Connect device with full bi-directional control. Skip tracks and change playlists from any modern device, or interact directly with the native Aqua UI on your legacy Mac to control your Spotify session.
+
+<img width="1025" height="767" alt="C6E12748-7F5B-48A2-85B4-7BEC26304E59" src="https://github.com/user-attachments/assets/37d4880e-1138-430c-99d6-f7104fb52fb0" />
 
 ---
 
