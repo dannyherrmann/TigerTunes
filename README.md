@@ -41,16 +41,7 @@ Spotify's modern encryption and metadata heavy-lifting are too taxing for vintag
 ## 🚀 Quick Start: 3 Steps to Music
 
 ### 1. Setup the Bridge (Modern Mac)
-The Bridge handles the heavy lifting. It is signed and notarized with Apple, so installation is seamless.
-* **Install:** Download `TigerTunesBridge-Installer.dmg` from [Releases](https://github.com/dannyherrmann/TigerTunes/releases). Open the DMG and drag the app to your **Applications** folder.
-* **Launch:** Open the app. Because it is notarized, macOS will confirm it was scanned for malware; click **Open**.
-* **Connect & Auth:** Click the **Connect** button. Two browser windows will appear:
-    1. **Web API:** Log in and click **Agree** for "TigerTunes" metadata access.
-    2. **Streaming Engine:** Click **"Continue to the app"** to enable the audio backend.
-* **Ready:** The app will display: *"Authenticated! Open TigerTunes on your legacy Mac now."*
-
-### 1. Setup the Bridge (Modern Mac)
-The Bridge handles the heavy lifting and **creates a new Spotify Connect device named "TigerTunes"** on your network.
+The Bridge handles the heavy lifting and **creates a new Spotify Connect device named "TigerTunes"** on your network. It is signed and notarized with Apple, so installation is seamless on your Apple Silicon Mac.
 * **Install:** Download `TigerTunesBridge-Installer.dmg` from [Releases](https://github.com/dannyherrmann/TigerTunes/releases). Open the DMG and drag the app to your **Applications** folder.
 * **Launch:** Open the app. Because it is notarized, macOS will confirm it was scanned for malware; click **Open**.
 * **Connect & Auth:** Click the **Connect** button. Two browser windows will appear:
