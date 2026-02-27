@@ -4,7 +4,7 @@
 
 TigerTunes transforms your vintage PowerPC or Intel Mac into a native Spotify Connect device with full bi-directional control. Skip tracks and change playlists from any modern device, or interact directly with the native Aqua UI on your legacy Mac to control your Spotify session.
 
-**Demo Video:** <a href="https://photos.app.goo.gl/K1Yn7hoFJ5wEd2s56" target="_blank">Watch TigerTunes in action here</a>
+**Demo Video:** [Watch TigerTunes in action here](https://photos.app.goo.gl/K1Yn7hoFJ5wEd2s56)
 
 <img width="1025" height="767" alt="C6E12748-7F5B-48A2-85B4-7BEC26304E59" src="https://github.com/user-attachments/assets/37d4880e-1138-430c-99d6-f7104fb52fb0" />
 
