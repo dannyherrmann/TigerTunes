@@ -76,7 +76,7 @@ This is where the magic happens. You don't even need to select a device.
 
 ---
 
-## ⚙️ Bridge Configuration"
+## ⚙️ Bridge Configuration
 
 ### Rename your "Speaker"
 By default, the Spotify connect device created by the bridge will appear in Spotify as **"TigerTunes"**. If you want it to match your specific hardware (e.g., "iMac G4"), you can change the name manually:
