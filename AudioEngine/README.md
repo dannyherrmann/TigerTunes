@@ -1,3 +1,3 @@
-## TigerTunes Audio Engine
+## 🏗 AudioEngine Development & Building
 
-This directory will contain the C-based audio playback logic used to interface with Apple Core Audio.
+> **Note:** Detailed build instructions, dependency requirements, and environment setup guides are currently being drafted and will be posted shortly.
