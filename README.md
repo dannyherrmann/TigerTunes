@@ -103,7 +103,7 @@ The Tiger Tunes Bridge arm64 app stores your Spotify Oauth credentials locally s
 
 ### ⚠️ Troubleshooting
 * **Same Network:** Both the Bridge and the Speaker must be on the same local network (Wi-Fi or Ethernet).
-* **Apple Silicon Only:** The current Bridge release is built for **ARM64**. Support for Intel-based Modern Macs is currently in development.
+* **Apple Silicon Only:** The current Bridge release is built for **ARM64**. Bridge support for Intel-based Macs and a headless version for Raspberry Pi (Linux arm64/armhf) is currently in development.
 
 ---
 
