@@ -2,9 +2,9 @@
 
 ### **Turn your Legacy Mac into a high-fidelity Spotify Connect speaker.**
 
-<img width="1021" height="767" alt="546870F1-1342-4DC3-9603-CA55C63E8307" src="https://github.com/user-attachments/assets/3a4ac0da-7ff4-479a-9a50-4dfff4c4217d" />
-
 TigerTunes breathes new life into "Golden Era" Apple hardware. It transforms your vintage PowerPC or Intel Mac into a native Spotify Connect device, controllable from any modern phone, tablet, or computer.
+
+<img width="1021" height="767" alt="546870F1-1342-4DC3-9603-CA55C63E8307" src="https://github.com/user-attachments/assets/3a4ac0da-7ff4-479a-9a50-4dfff4c4217d" />
 
 ---
 
