@@ -6,7 +6,7 @@ TigerTunes transforms your vintage PowerPC or Intel Mac into a native Spotify Co
 
 **Demo Video:** [Watch TigerTunes in action here](https://photos.app.goo.gl/K1Yn7hoFJ5wEd2s56)
 
-<img width="1025" height="767" alt="C6E12748-7F5B-48A2-85B4-7BEC26304E59" src="https://github.com/user-attachments/assets/37d4880e-1138-430c-99d6-f7104fb52fb0" />
+<img width="2048" height="1540" alt="A23D6DCB-EA39-4006-92E4-A434D6942BA4" src="https://github.com/user-attachments/assets/a8394fb3-a40a-480a-8720-99e87a831cf5" />
 
 ---
 
