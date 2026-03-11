@@ -2,11 +2,21 @@
 .cache
 .cache-*
 auth_token
-config.yml
 state.json
 .env
 
-# --- Python Environment ---
+# --- Modern Bridge (Apple/Xcode) ---
+# Ignore the huge build folder and local user settings
+DerivedData/
+*.xcuserstate
+project.xcworkspace/xcuserdata/
+*.xcuserdata/
+*.ls3
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# --- Python Environment (Cleanup) ---
 venv/
 env/
 __pycache__/
@@ -17,7 +27,13 @@ lockfile
 .DS_Store
 Thumbs.db
 
-# --- Project Specific Binaries ---
+# --- Project Specific Binaries (DO NOT UPLOAD) ---
 go-librespot
 go-librespot-arm64
+go-librespot-static
 ffmpeg
+shairport-sync
+
+# --- Configs ---
+# We REMOVED config.yml from here because it's needed for first-run setup.
+# Ensure no sensitive personal data is inside the default config.yml!
