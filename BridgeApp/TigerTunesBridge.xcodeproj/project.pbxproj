@@ -23,7 +23,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		717BAE5E2F50A9CF00AF9EB1 /* Exceptions for "Tiger Tunes Bridge" folder in "Tiger Tunes Bridge" target */ = {
+		715F65A52F61EC190058BD4B /* Exceptions for "TigerTunesBridge" folder in "Tiger Tunes Bridge" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ffmpeg,
@@ -35,7 +35,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		717BAE5D2F50A9CC00AF9EB1 /* Exceptions for "Tiger Tunes Bridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */ = {
+		715F65A22F61EC0E0058BD4B /* Exceptions for "TigerTunesBridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			attributesByRelativePath = {
 				ffmpeg = (CodeSignOnCopy, );
@@ -52,13 +52,13 @@
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		71351C682F50A36300318D37 /* Tiger Tunes Bridge */ = {
+		71351C682F50A36300318D37 /* TigerTunesBridge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				717BAE5E2F50A9CF00AF9EB1 /* Exceptions for "Tiger Tunes Bridge" folder in "Tiger Tunes Bridge" target */,
-				717BAE5D2F50A9CC00AF9EB1 /* Exceptions for "Tiger Tunes Bridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */,
+				715F65A52F61EC190058BD4B /* Exceptions for "TigerTunesBridge" folder in "Tiger Tunes Bridge" target */,
+				715F65A22F61EC0E0058BD4B /* Exceptions for "TigerTunesBridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */,
 			);
-			path = "Tiger Tunes Bridge";
+			path = TigerTunesBridge;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -77,7 +77,7 @@
 		71351C5D2F50A36300318D37 = {
 			isa = PBXGroup;
 			children = (
-				71351C682F50A36300318D37 /* Tiger Tunes Bridge */,
+				71351C682F50A36300318D37 /* TigerTunesBridge */,
 				71351C672F50A36300318D37 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,7 +107,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				71351C682F50A36300318D37 /* Tiger Tunes Bridge */,
+				71351C682F50A36300318D37 /* TigerTunesBridge */,
 			);
 			name = "Tiger Tunes Bridge";
 			packageProductDependencies = (
@@ -131,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 71351C612F50A36300318D37 /* Build configuration list for PBXProject "Tiger Tunes Bridge" */;
+			buildConfigurationList = 71351C612F50A36300318D37 /* Build configuration list for PBXProject "TigerTunesBridge" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -384,7 +384,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		71351C612F50A36300318D37 /* Build configuration list for PBXProject "Tiger Tunes Bridge" */ = {
+		71351C612F50A36300318D37 /* Build configuration list for PBXProject "TigerTunesBridge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				71351C6F2F50A36500318D37 /* Debug */,
