@@ -1,0 +1,14 @@
+device_name: "TigerTunes"
+device_type: computer
+bitrate: 320
+zeroconf_enabled: true
+credentials:
+  type: interactive
+audio_backend: pipe
+audio_output_pipe: /dev/stdout
+audio_output_pipe_format: s16le
+server:
+  enabled: true
+  address: "0.0.0.0"
+  port: 8888
+  allow_origin: "*"
