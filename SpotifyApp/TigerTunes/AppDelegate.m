@@ -258,7 +258,7 @@
                         [self handleRemoteEvent:singlePacket];
                     }
                 }
-                [[statusLabel window] displayIfNeeded];
+                //[[statusLabel window] displayIfNeeded];
             }
             break;
         }
@@ -280,43 +280,50 @@
 }
 
 - (void)handleServerDisconnect {
-    NSString *lostServiceName = @"Server"; // Fallback
-    if (currentService) {
-        lostServiceName = [currentService name];
-    }
-    // 1. Stop the local drift timer immediately
+    // 1. Immediate UI Feedback
     [self stopDriftTimer];
-    
     [statusLED setTextColor:[NSColor redColor]];
-    [statusLabel setStringValue:[NSString stringWithFormat:@"Disconnected from %@", lostServiceName]];
     
-    // 2. Clear the UI so the user knows what happened
-    //[statusLabel setStringValue:@"Disconnected from Spotify Bridge"];
-    //[trackNameLabel setStringValue:@"Server Lost"];
-    //[artistLabel setStringValue:@"Check MacBook Air"];
+    NSString *lostServiceName = (currentService) ? [currentService name] : @"Server";
+    [statusLabel setStringValue:[NSString stringWithFormat:@"Searching for %@...", lostServiceName]];
     
-    // 3. Disable the controls
+    // 2. Clear Track Metadata (prevents seeing old song while reconnecting)
+    [trackNameLabel setStringValue:@""];
+    [contextLabel setStringValue:@""];
+    [artistLabel setStringValue:@"Reconnecting..."];
+    [albumArtView setImage:nil];
+    
+    // 3. Disable Controls
     [playPauseButton setEnabled:NO];
     [nextButton setEnabled:NO];
     [previousButton setEnabled:NO];
-
-    if (audioClientTask && [audioClientTask isRunning]) {
-        NSLog(@"Stopping audio client task...");
-        [audioClientTask terminate];
+    
+    // 4. Force Kill the Audio Engine
+    if (audioClientTask) {
+        if ([audioClientTask isRunning]) [audioClientTask terminate];
         [audioClientTask release];
         audioClientTask = nil;
     }
-
     system("killall TigerTunesClient");
-
-    // 4. RESET DISCOVERY (The new part)
+    
+    // 5. Tear Down Network (Nuclear Reset)
+    if (metadataInputStream) {
+        [metadataInputStream close];
+        [metadataInputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [metadataInputStream release];
+        metadataInputStream = nil;
+    }
+    
     if (serviceBrowser) {
         [serviceBrowser stop];
+        [serviceBrowser setDelegate:nil]; // Prevent ghost delegate calls
         [serviceBrowser release];
         serviceBrowser = nil;
     }
     
     if (currentService) {
+        [currentService stop]; // Explicitly stop any pending resolution
+        [currentService setDelegate:nil];
         [currentService release];
         currentService = nil;
     }
@@ -325,19 +332,15 @@
         [serverIP release];
         serverIP = nil;
     }
-
-    // 4. Close and nullify the broken stream
-    if (metadataInputStream) {
-        [metadataInputStream close];
-        [metadataInputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        [metadataInputStream release];
-        metadataInputStream = nil;
-    }
-
+    
+    // 6. Reset the Hijack Lock
     isConnectTriggered = NO;
-
-    // 5. Trigger a fresh search for the server
-    [self startServerDiscovery];
+    
+    // 7. 🔥 THE SECRET SAUCE: Wait 2 seconds before searching again.
+    // This gives the Tiger mDNSResponder enough time to flush its cache
+    // so it actually triggers didFindService when the bridge comes back.
+    NSLog(@"🔄 Server lost. Waiting 2s for cache flush before searching...");
+    [self performSelector:@selector(startServerDiscovery) withObject:nil afterDelay:2.0];
 }
 
 - (BOOL)isPlaying {
@@ -473,64 +476,79 @@
 
 - (void)fetchEnrichedStatus:(NSString *)uri {
     if (!uri || [uri isEqualToString:@"null"]) return;
+    
+    // Run the network-heavy part in a background thread
+    [NSThread detachNewThreadSelector:@selector(performAsyncContextResolution:)
+                             toTarget:self
+                           withObject:uri];
+}
 
+- (void)performAsyncContextResolution:(NSString *)uri {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
     NSString *encodedURI = [uri stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlStr = [NSString stringWithFormat:@"http://%@:5002/resolve_context?uri=%@", serverIP, encodedURI];
     
-    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr] 
-                                         cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
-                                     timeoutInterval:2.0];
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]
+                                         cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                     timeoutInterval:3.0];
     
+    // This happens off the main thread now!
     NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:nil error:nil];
     
     if (data && [data length] > 0) {
-        NSError *error = nil;
-        // USE THE NEW LIBRARY HERE
-        NSDictionary *dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&error];
+        NSDictionary *dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:data error:nil];
+        NSString *contextName = [dict objectForKey:@"name"];
         
-        if (!error && dict) {
-            NSString *contextName = [dict objectForKey:@"name"];
-            NSLog(@"✅ Cleaned Context Name: %@", contextName);
-            
-            if (contextName && (id)contextName != [NSNull null]) {
-                // Update UI on Main Thread
-                [contextLabel performSelectorOnMainThread:@selector(setStringValue:) 
-                                               withObject:contextName 
-                                            waitUntilDone:NO];
-                [contextLabel setHidden:NO];
-                
-                // If context name is long, start the ping-pong scroll!
-                if ([contextLabel respondsToSelector:@selector(startScrolling)]) {
-                    [contextLabel performSelectorOnMainThread:@selector(startScrolling) 
-                                                   withObject:nil 
-                                                waitUntilDone:NO];
-                }
-            } else {
-                [contextLabel setHidden:YES];
-            }
+        if (contextName && (id)contextName != [NSNull null]) {
+            [self performSelectorOnMainThread:@selector(updateContextUI:)
+                                   withObject:contextName
+                                waitUntilDone:NO];
         }
     }
+    
+    [pool release];
+}
+
+- (void)updateContextUI:(NSString *)name {
+    // A. Set the text - Tiger will handle the "..." truncation automatically
+    // based on your .xib settings.
+    [contextLabel setStringValue:name];
+    
+    // B. Make it visible
+    [contextLabel setHidden:NO];
+    
+    // C. Force a redraw to ensure the "..." shows up correctly
+    [contextLabel display];
+    
+    NSLog(@"✅ Context Displayed (Truncated): %@", name);
 }
 
 - (void)startDriftTimer {
-    // Kill any existing timer first to avoid multiple timers running
+    // 1. Safety first: kill any existing timer
     [self stopDriftTimer];
     
-    // Create a timer that ticks every 1 second locally
-    driftTimer = [[NSTimer scheduledTimerWithTimeInterval:1.0
-                                                   target:self
-                                                 selector:@selector(driftTick)
-                                                 userInfo:nil
-                                                  repeats:YES] retain];
-    NSLog(@"⏰ Drift Timer Started");
+    // 2. Use the standard scheduled timer (Tiger-safe)
+    // We use 'scheduledTimer' because it automatically adds itself to the current run loop
+    driftTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                  target:self
+                                                selector:@selector(driftTick)
+                                                userInfo:nil
+                                                 repeats:YES];
+    
+    // 3. Keep a reference so we can invalidate it later
+    [driftTimer retain];
+    
+    NSLog(@"⏰ Drift Timer Started (Tiger Safe Mode)");
 }
 
 - (void)stopDriftTimer {
-    if (driftTimer) {
+    if (driftTimer != nil) {
+        // Log to verify we aren't double-releasing
+        NSLog(@"🛑 Stopping Drift Timer...");
         [driftTimer invalidate];
         [driftTimer release];
         driftTimer = nil;
-        NSLog(@"🛑 Drift Timer Stopped");
     }
 }
 

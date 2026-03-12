@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		711892BD2F57DB6700F2A3C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892BC2F57DB6700F2A3C9 /* AppDelegate.m */; };
+		711892BF2F57DB6700F2A3C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892BE2F57DB6700F2A3C9 /* main.m */; };
+		711892C12F57DB6700F2A3C9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 711892C02F57DB6700F2A3C9 /* Images.xcassets */; };
+		711892C42F57DB6700F2A3C9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 711892C22F57DB6700F2A3C9 /* MainMenu.xib */; };
+		711892DA2F57DC8C00F2A3C9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711892D92F57DC8C00F2A3C9 /* SystemConfiguration.framework */; };
+		711892DC2F57DC9300F2A3C9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711892DB2F57DC9300F2A3C9 /* CoreFoundation.framework */; };
+		711892DE2F57DC9800F2A3C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711892DD2F57DC9800F2A3C9 /* Cocoa.framework */; };
+		711892E02F57DC9F00F2A3C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711892DF2F57DC9F00F2A3C9 /* Foundation.framework */; };
+		711892E42F57DCBB00F2A3C9 /* TigerTunesClient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 711892E12F57DCAD00F2A3C9 /* TigerTunesClient */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		711892F12F57DD4300F2A3C9 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892E82F57DD4300F2A3C9 /* CDataScanner_Extensions.m */; };
+		711892F22F57DD4300F2A3C9 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892EA2F57DD4300F2A3C9 /* CDataScanner.m */; };
+		711892F32F57DD4300F2A3C9 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892EC2F57DD4300F2A3C9 /* CJSONDeserializer.m */; };
+		711892F42F57DD4300F2A3C9 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892EE2F57DD4300F2A3C9 /* CJSONScanner.m */; };
+		711892F52F57DD4300F2A3C9 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892F02F57DD4300F2A3C9 /* CJSONSerializer.m */; };
+		711892F92F57DD6300F2A3C9 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 711892F82F57DD6300F2A3C9 /* NSDictionary_JSONExtensions.m */; };
+		711AE7F22F62628500E5689D /* AirPlay.icns in Resources */ = {isa = PBXBuildFile; fileRef = 711AE7F12F62628500E5689D /* AirPlay.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		711892E32F57DCB500F2A3C9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				711892E42F57DCBB00F2A3C9 /* TigerTunesClient in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		711892B62F57DB6700F2A3C9 /* Tiger Tunes Receiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tiger Tunes Receiver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		711892BA2F57DB6700F2A3C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		711892BB2F57DB6700F2A3C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		711892BC2F57DB6700F2A3C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		711892BE2F57DB6700F2A3C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		711892C02F57DB6700F2A3C9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		711892C32F57DB6700F2A3C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		711892D92F57DC8C00F2A3C9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		711892DB2F57DC9300F2A3C9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		711892DD2F57DC9800F2A3C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		711892DF2F57DC9F00F2A3C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		711892E12F57DCAD00F2A3C9 /* TigerTunesClient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = TigerTunesClient; path = ../../Desktop/TigerTunesClient; sourceTree = "<group>"; };
+		711892E72F57DD4300F2A3C9 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner_Extensions.h; path = ../../TigerTunes/TigerTunes/CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		711892E82F57DD4300F2A3C9 /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataScanner_Extensions.m; path = ../../TigerTunes/TigerTunes/CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		711892E92F57DD4300F2A3C9 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner.h; path = ../../TigerTunes/TigerTunes/CDataScanner.h; sourceTree = "<group>"; };
+		711892EA2F57DD4300F2A3C9 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataScanner.m; path = ../../TigerTunes/TigerTunes/CDataScanner.m; sourceTree = "<group>"; };
+		711892EB2F57DD4300F2A3C9 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONDeserializer.h; path = ../../TigerTunes/TigerTunes/CJSONDeserializer.h; sourceTree = "<group>"; };
+		711892EC2F57DD4300F2A3C9 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJSONDeserializer.m; path = ../../TigerTunes/TigerTunes/CJSONDeserializer.m; sourceTree = "<group>"; };
+		711892ED2F57DD4300F2A3C9 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONScanner.h; path = ../../TigerTunes/TigerTunes/CJSONScanner.h; sourceTree = "<group>"; };
+		711892EE2F57DD4300F2A3C9 /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJSONScanner.m; path = ../../TigerTunes/TigerTunes/CJSONScanner.m; sourceTree = "<group>"; };
+		711892EF2F57DD4300F2A3C9 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONSerializer.h; path = ../../TigerTunes/TigerTunes/CJSONSerializer.h; sourceTree = "<group>"; };
+		711892F02F57DD4300F2A3C9 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJSONSerializer.m; path = ../../TigerTunes/TigerTunes/CJSONSerializer.m; sourceTree = "<group>"; };
+		711892F62F57DD5700F2A3C9 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONRepresentation.h; path = ../../TigerTunes/TigerTunes/JSONRepresentation.h; sourceTree = "<group>"; };
+		711892F72F57DD6300F2A3C9 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDictionary_JSONExtensions.h; path = ../../TigerTunes/TigerTunes/NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		711892F82F57DD6300F2A3C9 /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDictionary_JSONExtensions.m; path = ../../TigerTunes/TigerTunes/NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		711AE7F12F62628500E5689D /* AirPlay.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AirPlay.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		711892B32F57DB6700F2A3C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				711892E02F57DC9F00F2A3C9 /* Foundation.framework in Frameworks */,
+				711892DE2F57DC9800F2A3C9 /* Cocoa.framework in Frameworks */,
+				711892DC2F57DC9300F2A3C9 /* CoreFoundation.framework in Frameworks */,
+				711892DA2F57DC8C00F2A3C9 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		711892AD2F57DB6700F2A3C9 = {
+			isa = PBXGroup;
+			children = (
+				711892E12F57DCAD00F2A3C9 /* TigerTunesClient */,
+				711892DF2F57DC9F00F2A3C9 /* Foundation.framework */,
+				711892DD2F57DC9800F2A3C9 /* Cocoa.framework */,
+				711892DB2F57DC9300F2A3C9 /* CoreFoundation.framework */,
+				711892D92F57DC8C00F2A3C9 /* SystemConfiguration.framework */,
+				711892B82F57DB6700F2A3C9 /* TigerTunesReceiver */,
+				711892B72F57DB6700F2A3C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		711892B72F57DB6700F2A3C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				711892B62F57DB6700F2A3C9 /* Tiger Tunes Receiver.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		711892B82F57DB6700F2A3C9 /* TigerTunesReceiver */ = {
+			isa = PBXGroup;
+			children = (
+				711AE7F12F62628500E5689D /* AirPlay.icns */,
+				711892E52F57DCFA00F2A3C9 /* Libraries */,
+				711892BB2F57DB6700F2A3C9 /* AppDelegate.h */,
+				711892BC2F57DB6700F2A3C9 /* AppDelegate.m */,
+				711892C02F57DB6700F2A3C9 /* Images.xcassets */,
+				711892C22F57DB6700F2A3C9 /* MainMenu.xib */,
+				711892B92F57DB6700F2A3C9 /* Supporting Files */,
+			);
+			path = TigerTunesReceiver;
+			sourceTree = "<group>";
+		};
+		711892B92F57DB6700F2A3C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				711892BA2F57DB6700F2A3C9 /* Info.plist */,
+				711892BE2F57DB6700F2A3C9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		711892E52F57DCFA00F2A3C9 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				711892E62F57DD2100F2A3C9 /* JSON */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		711892E62F57DD2100F2A3C9 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				711892F72F57DD6300F2A3C9 /* NSDictionary_JSONExtensions.h */,
+				711892F82F57DD6300F2A3C9 /* NSDictionary_JSONExtensions.m */,
+				711892F62F57DD5700F2A3C9 /* JSONRepresentation.h */,
+				711892E72F57DD4300F2A3C9 /* CDataScanner_Extensions.h */,
+				711892E82F57DD4300F2A3C9 /* CDataScanner_Extensions.m */,
+				711892E92F57DD4300F2A3C9 /* CDataScanner.h */,
+				711892EA2F57DD4300F2A3C9 /* CDataScanner.m */,
+				711892EB2F57DD4300F2A3C9 /* CJSONDeserializer.h */,
+				711892EC2F57DD4300F2A3C9 /* CJSONDeserializer.m */,
+				711892ED2F57DD4300F2A3C9 /* CJSONScanner.h */,
+				711892EE2F57DD4300F2A3C9 /* CJSONScanner.m */,
+				711892EF2F57DD4300F2A3C9 /* CJSONSerializer.h */,
+				711892F02F57DD4300F2A3C9 /* CJSONSerializer.m */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		711892B52F57DB6700F2A3C9 /* TigerTunesReceiver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 711892D32F57DB6700F2A3C9 /* Build configuration list for PBXNativeTarget "TigerTunesReceiver" */;
+			buildPhases = (
+				711892B22F57DB6700F2A3C9 /* Sources */,
+				711892B32F57DB6700F2A3C9 /* Frameworks */,
+				711892B42F57DB6700F2A3C9 /* Resources */,
+				711892E32F57DCB500F2A3C9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TigerTunesReceiver;
+			productName = TigerTunesReceiver;
+			productReference = 711892B62F57DB6700F2A3C9 /* Tiger Tunes Receiver.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		711892AE2F57DB6700F2A3C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Danny Herrmann";
+				TargetAttributes = {
+					711892B52F57DB6700F2A3C9 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = 711892B12F57DB6700F2A3C9 /* Build configuration list for PBXProject "TigerTunesReceiver" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 711892AD2F57DB6700F2A3C9;
+			productRefGroup = 711892B72F57DB6700F2A3C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				711892B52F57DB6700F2A3C9 /* TigerTunesReceiver */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		711892B42F57DB6700F2A3C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				711892C12F57DB6700F2A3C9 /* Images.xcassets in Resources */,
+				711AE7F22F62628500E5689D /* AirPlay.icns in Resources */,
+				711892C42F57DB6700F2A3C9 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		711892B22F57DB6700F2A3C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				711892F92F57DD6300F2A3C9 /* NSDictionary_JSONExtensions.m in Sources */,
+				711892F22F57DD4300F2A3C9 /* CDataScanner.m in Sources */,
+				711892BF2F57DB6700F2A3C9 /* main.m in Sources */,
+				711892BD2F57DB6700F2A3C9 /* AppDelegate.m in Sources */,
+				711892F12F57DD4300F2A3C9 /* CDataScanner_Extensions.m in Sources */,
+				711892F42F57DD4300F2A3C9 /* CJSONScanner.m in Sources */,
+				711892F52F57DD4300F2A3C9 /* CJSONSerializer.m in Sources */,
+				711892F32F57DD4300F2A3C9 /* CJSONDeserializer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		711892C22F57DB6700F2A3C9 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				711892C32F57DB6700F2A3C9 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		711892D12F57DB6700F2A3C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		711892D22F57DB6700F2A3C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		711892D42F57DB6700F2A3C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TigerTunesReceiver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = "Tiger Tunes Receiver";
+				SDKROOT = macosx10.5;
+				VALID_ARCHS = "i386 ppc ppc7400 ppc970 x86_64";
+			};
+			name = Debug;
+		};
+		711892D52F57DB6700F2A3C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+					x86_64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TigerTunesReceiver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = "Tiger Tunes Receiver";
+				SDKROOT = macosx10.5;
+				VALID_ARCHS = "i386 ppc ppc7400 ppc970 x86_64";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		711892B12F57DB6700F2A3C9 /* Build configuration list for PBXProject "TigerTunesReceiver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				711892D12F57DB6700F2A3C9 /* Debug */,
+				711892D22F57DB6700F2A3C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		711892D32F57DB6700F2A3C9 /* Build configuration list for PBXNativeTarget "TigerTunesReceiver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				711892D42F57DB6700F2A3C9 /* Debug */,
+				711892D52F57DB6700F2A3C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 711892AE2F57DB6700F2A3C9 /* Project object */;
+}

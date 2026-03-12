@@ -21,8 +21,8 @@
 		7120C7C92F2C5CAF00E01B47 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7120C7C82F2C5CAE00E01B47 /* Cocoa.framework */; };
 		7120C7CB2F2C5CB500E01B47 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7120C7CA2F2C5CB500E01B47 /* CoreFoundation.framework */; };
 		7120C7CD2F2C5CBB00E01B47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7120C7CC2F2C5CBB00E01B47 /* SystemConfiguration.framework */; };
+		71311E912F515B0D0084C2E3 /* TigerTunesClient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71311E8F2F515B060084C2E3 /* TigerTunesClient */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		713660882F319BED00468D96 /* ITunesLCDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713660872F319BED00468D96 /* ITunesLCDView.m */; };
-		714650DB2F4AD0D800365185 /* TigerTunesClient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 714650D92F4AD0CE00365185 /* TigerTunesClient */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		715E83122F3D832E00E9D662 /* WinampButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E83112F3D832E00E9D662 /* WinampButton.m */; };
 		7170A7252F4D54F4008D4F24 /* TigerTunes.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7170A7242F4D54F4008D4F24 /* TigerTunes.icns */; };
 		719B63F92F48202A00C53786 /* TTScrollingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B63F82F48202A00C53786 /* TTScrollingTextField.m */; };
@@ -35,7 +35,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				714650DB2F4AD0D800365185 /* TigerTunesClient in CopyFiles */,
+				71311E912F515B0D0084C2E3 /* TigerTunesClient in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,8 +66,8 @@
 		7120C7C82F2C5CAE00E01B47 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		7120C7CA2F2C5CB500E01B47 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		7120C7CC2F2C5CBB00E01B47 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		71311E8F2F515B060084C2E3 /* TigerTunesClient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = TigerTunesClient; sourceTree = "<group>"; };
 		713660872F319BED00468D96 /* ITunesLCDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITunesLCDView.m; sourceTree = "<group>"; };
-		714650D92F4AD0CE00365185 /* TigerTunesClient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = TigerTunesClient; sourceTree = "<group>"; };
 		715E83102F3D832E00E9D662 /* WinampButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinampButton.h; sourceTree = "<group>"; };
 		715E83112F3D832E00E9D662 /* WinampButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinampButton.m; sourceTree = "<group>"; };
 		7170A7242F4D54F4008D4F24 /* TigerTunes.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TigerTunes.icns; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		7120C79A2F2C570E00E01B47 = {
 			isa = PBXGroup;
 			children = (
-				714650D92F4AD0CE00365185 /* TigerTunesClient */,
+				71311E8F2F515B060084C2E3 /* TigerTunesClient */,
 				7120C7CC2F2C5CBB00E01B47 /* SystemConfiguration.framework */,
 				7120C7CA2F2C5CB500E01B47 /* CoreFoundation.framework */,
 				7120C7C82F2C5CAE00E01B47 /* Cocoa.framework */,
@@ -354,7 +354,7 @@
 				INFOPLIST_FILE = TigerTunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = TigerTunes;
+				PRODUCT_NAME = "Tiger Tunes Controller";
 				SDKROOT = macosx10.5;
 				VALID_ARCHS = "i386 ppc ppc7400 ppc970 x86_64";
 			};
@@ -375,7 +375,7 @@
 				INFOPLIST_FILE = TigerTunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = TigerTunes;
+				PRODUCT_NAME = "Tiger Tunes Controller";
 				SDKROOT = macosx10.5;
 				VALID_ARCHS = "i386 ppc ppc7400 ppc970 x86_64";
 			};
