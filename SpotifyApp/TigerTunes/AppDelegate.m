@@ -15,36 +15,40 @@
 @implementation AppDelegate
 
 - (void)awakeFromNib {
-    // Set the window to a dark "Spotify Gray" (around #121212)
+    // 1. Set the background (This part is safe on all OS versions)
     NSColor *spotifyDark = [NSColor colorWithCalibratedRed:0.16 green:0.16 blue:0.16 alpha:1.0];
     [window setBackgroundColor:spotifyDark];
+    
     if ([albumArtView respondsToSelector:@selector(setWantsLayer:)]) {
         [albumArtView setWantsLayer:YES];
         CALayer *layer = [albumArtView layer];
         
-        // 1. Subtle Bezel (Hairline)
-        // Instead of a dark border, use a light one at very low opacity.
-        // This looks like a highlight on the edge of the "physical" record.
-        layer.borderColor = [[NSColor colorWithCalibratedWhite:1.0 alpha:0.15] CGColor];
-        layer.borderWidth = 0.5; // Hairline looks much more premium on PPC
+        // --- MANUAL CGCOLOR CREATION (The Fix) ---
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
         
-        // 2. Focused Tiger Shadow
-        // Reducing radius from 8.0 to 4.0 makes it look "closer" to the window.
-        layer.shadowColor = [[NSColor blackColor] CGColor];
+        // Creating a subtle white bezel (15% opacity)
+        CGFloat whiteComps[] = {1.0, 1.0, 1.0, 0.15};
+        CGColorRef bezelColor = CGColorCreate(colorSpace, whiteComps);
+        layer.borderColor = bezelColor;
+        
+        // Creating a solid black shadow
+        CGFloat blackComps[] = {0.0, 0.0, 0.0, 1.0};
+        CGColorRef shadowColor = CGColorCreate(colorSpace, blackComps);
+        layer.shadowColor = shadowColor;
+        
+        // Apply settings
+        layer.borderWidth = 0.5;
         layer.shadowOpacity = 0.7;
-        layer.shadowOffset = CGSizeMake(0, -2); // Tighter offset
+        layer.shadowOffset = CGSizeMake(0, -2);
         layer.shadowRadius = 4.0;
-        
-        // 3. Vintage Corner Radius
-        // 6.0 is a bit modern; 4.0 is that classic "Apple Gadget" roundness.
         layer.cornerRadius = 4.0;
-        layer.masksToBounds = NO;
         
-        // Performance optimization for G4
-        layer.edgeAntialiasingMask = kCALayerLeftEdge | kCALayerRightEdge | kCALayerBottomEdge | kCALayerTopEdge;
+        // Clean up memory (Important on PPC!)
+        CGColorRelease(bezelColor);
+        CGColorRelease(shadowColor);
+        CGColorSpaceRelease(colorSpace);
         
     } else {
-        // Fallback for very old Tiger builds
         [albumArtView setImageFrameStyle:NSImageFrameNone];
     }
 }
