@@ -4,6 +4,12 @@
 
 TigerTunes transforms your vintage PowerPC or Intel Mac into a native **Spotify Connect** device or an **AirPlay** receiver. Reclaim your iMac G4’s legendary speakers with a native Aqua UI and modern streaming performance.
 
+<details>
+  <summary>📸 View App Screenshots</summary>
+  <img width="1440" height="827" alt="Screenshot 2026-03-18 at 11 22 18 AM" src="https://github.com/user-attachments/assets/28b73518-b8ba-48ae-9ca0-12e87604fb19" />
+  <img width="1439" height="828" alt="Screenshot 2026-03-18 at 11 17 05 AM" src="https://github.com/user-attachments/assets/45f00d58-6b8c-49ca-817b-4b5b48c4f501" />
+</details>
+
 ---
 
 ## 📻 Why TigerTunes?
