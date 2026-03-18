@@ -8,6 +8,7 @@
 import Foundation
 import Network
 import Combine
+import AppKit
 
 class TigerTunesEngine: ObservableObject {
     
@@ -86,7 +87,13 @@ class TigerTunesEngine: ObservableObject {
         // --- ROUTE BRANCHING START ---
         
         if mode == .airplayOnly {
-            // 🚀 AIRPLAY ROUTE: Just start Discovery and Shairport
+            // 🔍 Check port first
+            if !checkAndFixAirPlayConflict() {
+                self.appendLog("⚠️ Startup paused: Waiting for Port 5000 release.")
+                return // 🛑 Exit here! The user is now looking at the Alert.
+            }
+
+            // ✅ Only if port is clear:
             self.isRunning = true
             self.activeSource = .airplay
             
@@ -322,6 +329,77 @@ class TigerTunesEngine: ObservableObject {
             
         } catch {
             appendLog("❌ Failed to start AirPlay: \(error.localizedDescription)")
+        }
+    }
+    
+    func checkAndFixAirPlayConflict() -> Bool {
+        let port: UInt16 = 5000
+        var isBlocked = false
+
+        // 1. Check IPv4
+        let socket4 = socket(AF_INET, SOCK_STREAM, 0)
+        var addr4 = sockaddr_in()
+        addr4.sin_family = sa_family_t(AF_INET)
+        addr4.sin_port = port.bigEndian
+        addr4.sin_addr.s_addr = inet_addr("0.0.0.0")
+
+        let bind4 = withUnsafePointer(to: &addr4) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                bind(socket4, $0, socklen_t(MemoryLayout<sockaddr_in>.size))
+            }
+        }
+        if bind4 == -1 { isBlocked = true }
+        close(socket4)
+
+        // 2. Check IPv6 (The "Modern Mac" Culprit)
+        if !isBlocked {
+            let socket6 = socket(AF_INET6, SOCK_STREAM, 0)
+            var addr6 = sockaddr_in6()
+            addr6.sin6_family = sa_family_t(AF_INET6)
+            addr6.sin6_port = port.bigEndian
+            addr6.sin6_addr = in6addr_any
+
+            let bind6 = withUnsafePointer(to: &addr6) {
+                $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                    bind(socket6, $0, socklen_t(MemoryLayout<sockaddr_in6>.size))
+                }
+            }
+            if bind6 == -1 { isBlocked = true }
+            close(socket6)
+        }
+
+        if isBlocked {
+            print("DEBUG: Port 5000 is BLOCKED (likely by IPv6 AirPlay Receiver)")
+            DispatchQueue.main.async {
+                self.showAirPlayConflictAlert()
+            }
+            return false
+        }
+        
+        print("DEBUG: Port 5000 is truly FREE")
+        return true
+    }
+
+    private func showAirPlayConflictAlert() {
+        let alert = NSAlert()
+        alert.messageText = "AirPlay Port Conflict"
+        alert.informativeText = "TigerTunes requires Port 5000, which is currently reserved by the macOS 'AirPlay Receiver' service.\n\nDisabling this will temporarily prevent other devices from using this Mac as an AirPlay speaker. Please turn off 'AirPlay Receiver' in System Settings, then return here and click AirPlay Device to start the bridge."
+        
+        alert.addButton(withTitle: "Open Settings")
+        alert.addButton(withTitle: "OK")
+        
+        let response = alert.runModal()
+        
+        if response == .alertFirstButtonReturn {
+            // Direct link to the Handoff/AirPlay settings page
+            if let url = URL(string: "x-apple.systempreferences:com.apple.AirPlay-Settings.extension") {
+                NSWorkspace.shared.open(url)
+            } else {
+                // Fallback for older macOS versions (Monterey/Ventura)
+                let script = "tell application \"System Settings\" to activate\ntell application \"System Settings\" to reveal anchor \"AirDrop\" of pane id \"com.apple.Network-Settings.extension\""
+                var error: NSDictionary?
+                NSAppleScript(source: script)?.executeAndReturnError(&error)
+            }
         }
     }
     
