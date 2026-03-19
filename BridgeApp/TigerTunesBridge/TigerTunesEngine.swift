@@ -383,22 +383,25 @@ class TigerTunesEngine: ObservableObject {
     private func showAirPlayConflictAlert() {
         let alert = NSAlert()
         alert.messageText = "AirPlay Port Conflict"
-        alert.informativeText = "TigerTunes requires Port 5000, which is currently reserved by the macOS 'AirPlay Receiver' service.\n\nDisabling this will temporarily prevent other devices from using this Mac as an AirPlay speaker. Please turn off 'AirPlay Receiver' in System Settings, then return here and click AirPlay Device to start the bridge."
+        alert.informativeText = "TigerTunes needs Port 5000, which Tahoe reserves for 'AirPlay Receiver'.\n\nPlease toggle off 'AirPlay Receiver' in the settings window that opens so the Bridge can start."
         
         alert.addButton(withTitle: "Open Settings")
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        alert.alertStyle = .warning
         
         let response = alert.runModal()
         
         if response == .alertFirstButtonReturn {
-            // Direct link to the Handoff/AirPlay settings page
-            if let url = URL(string: "x-apple.systempreferences:com.apple.AirPlay-Settings.extension") {
+            // 1. The primary Tahoe 26.x URL for AirDrop & Handoff
+            let tahoeAirPlayURL = "x-apple.systempreferences:com.apple.AirDrop-Handoff-Settings.extension"
+            
+            // 2. The Fallback path if the extension ID fails
+            let fallbackURL = "x-apple.systempreferences:com.apple.Settings.AirPlay"
+
+            if let url = URL(string: tahoeAirPlayURL), NSWorkspace.shared.open(url) {
+                return
+            } else if let url = URL(string: fallbackURL) {
                 NSWorkspace.shared.open(url)
-            } else {
-                // Fallback for older macOS versions (Monterey/Ventura)
-                let script = "tell application \"System Settings\" to activate\ntell application \"System Settings\" to reveal anchor \"AirDrop\" of pane id \"com.apple.Network-Settings.extension\""
-                var error: NSDictionary?
-                NSAppleScript(source: script)?.executeAndReturnError(&error)
             }
         }
     }
