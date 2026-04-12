@@ -26,10 +26,6 @@
 #define MIN_BUFFER_FILL 131072  // Start when we have 32KB buffered
 #define MAX_BUFFER_FILL 458752 // Stop filling when we have 224KB (leave headroom)
 
-//#define BUFFER_SIZE 131072      // 128KB (approx 0.7s of audio)
-//#define MIN_BUFFER_FILL 32768   // Start when we have 32KB (~0.2s of audio)
-//#define MAX_BUFFER_FILL 98304   // Leave a little headroom (approx 0.5s)
-
 typedef struct {
     int socket;
     uint8_t buffer[BUFFER_SIZE];
