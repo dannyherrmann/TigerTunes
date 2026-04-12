@@ -109,7 +109,7 @@ class TigerTunesEngine: ObservableObject {
             process.executableURL = URL(fileURLWithPath: "/bin/sh")
             process.currentDirectoryURL = stateDir
             
-            let pipeline = "\"\(goPath)\" --config_dir \"\(stateDir.path)\" | \"\(ffmpegPath)\" -re -f s16le -ar 44100 -ac 2 -i pipe:0 -fflags nobuffer+flush_packets -flags low_delay -f s16le -ac 2 -ar 44100 pipe:1"
+            let pipeline = "\"\(goPath)\" --config_dir \"\(stateDir.path)\" | \"\(ffmpegPath)\" -re -f s16le -ar 44100 -ac 2 -i pipe:0 -fflags nobuffer+flush_packets -flags low_delay -f s16be -ac 2 -ar 44100 pipe:1"
 
             process.arguments = ["-c", pipeline]
             
@@ -226,13 +226,20 @@ class TigerTunesEngine: ObservableObject {
 
         // 4. Setup the Process
         let process = Process()
-        process.executableURL = URL(fileURLWithPath: Bundle.main.path(forAuxiliaryExecutable: "shairport-sync")!)
-        
-        // Launch using the config file (-c) and stdout backend (-o)
-        process.arguments = [
-            "-c", airplayConfigURL.path,
-            "-o", "stdout"
-        ]
+        process.executableURL = URL(fileURLWithPath: "/bin/sh")
+        process.currentDirectoryURL = stateDir
+
+        // The Shairport executable path
+        guard let shairportPath = Bundle.main.path(forAuxiliaryExecutable: "shairport-sync"),
+              let ffmpegPath = Bundle.main.path(forAuxiliaryExecutable: "ffmpeg") else { return }
+
+        // THE PIPELINE:
+        // 1. Run shairport-sync outputting raw s16le to stdout
+        // 2. Pipe to ffmpeg
+        // 3. Ffmpeg converts s16le (input) to s16be (output) for the G4
+        let pipeline = "\"\(shairportPath)\" -p 5004 -c \"\(airplayConfigURL.path)\" -o stdout | \"\(ffmpegPath)\" -f s16le -ar 44100 -ac 2 -i - -f s16be -ac 2 -ar 44100 -"
+
+        process.arguments = ["-c", pipeline]
 
         let outputPipe = Pipe()
         let errorPipe = Pipe()
