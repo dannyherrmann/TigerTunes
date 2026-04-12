@@ -37,8 +37,8 @@ Modern streaming services use encryption and security protocols that vintage G4/
 | Role | Required OS | Architecture | Download File |
 | :--- | :--- | :--- | :--- |
 | **The Bridge** | macOS 12.0+ | **Apple Silicon (M1-M4)** | `TigerTunesBridge-Installer.dmg` |
-| **The Controller (Spotify)** | OS X 10.4+ | **PPC / Intel** | `TigerTunes-Spotify-v1.0.0-RC1.dmg` |
-| **The Receiver (AirPlay)** | OS X 10.4+ | **PPC / Intel** | `TigerTunes-AirPlay-v1.0.0-RC1.dmg` |
+| **The Controller (Spotify)** | OS X 10.4+ | **PPC / Intel** | `TigerTunes-v1.0.0_Spotify.dmg` |
+| **The Receiver (AirPlay)** | OS X 10.4+ | **PPC / Intel** | `TigerTunes-v1.0.0_AirPlay.dmg` |
 > **Note:** A **Spotify Premium** account is required to utilize the Tiger Tunes Controller client on your legacy Mac.
 
 ---
