@@ -40,11 +40,6 @@ typedef struct {
 
 static PlayerState gState;
 
-// Manual byte swap for int16
-static inline int16_t swap_int16(int16_t val) {
-    return (int16_t)(((val & 0xFF) << 8) | ((val >> 8) & 0xFF));
-}
-
 // Background thread to fill buffer from network
 // NOW DOES BYTE SWAPPING HERE - not in audio callback!
 static void* NetworkReader(void *arg) {
@@ -77,14 +72,6 @@ static void* NetworkReader(void *arg) {
         if (bytesRead <= 0) {
             printf("\nSocket closed or error\n");
             break;
-        }
-        
-        // **SWAP BYTES HERE** - do the work in the network thread!
-        // This is NOT time-critical like the audio callback
-        samples = (int16_t *)tempBuffer;
-        sampleCount = bytesRead / 2;
-        for (i = 0; i < sampleCount; i++) {
-            samples[i] = swap_int16(samples[i]);
         }
         
         // Write ALREADY-SWAPPED data to ring buffer
