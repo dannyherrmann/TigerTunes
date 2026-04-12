@@ -26,6 +26,10 @@
 #define MIN_BUFFER_FILL 131072  // Start when we have 32KB buffered
 #define MAX_BUFFER_FILL 458752 // Stop filling when we have 224KB (leave headroom)
 
+//#define BUFFER_SIZE 131072      // 128KB (approx 0.7s of audio)
+//#define MIN_BUFFER_FILL 32768   // Start when we have 32KB (~0.2s of audio)
+//#define MAX_BUFFER_FILL 98304   // Leave a little headroom (approx 0.5s)
+
 typedef struct {
     int socket;
     uint8_t buffer[BUFFER_SIZE];
@@ -39,11 +43,6 @@ typedef struct {
 } PlayerState;
 
 static PlayerState gState;
-
-// Manual byte swap for int16
-static inline int16_t swap_int16(int16_t val) {
-    return (int16_t)(((val & 0xFF) << 8) | ((val >> 8) & 0xFF));
-}
 
 // Background thread to fill buffer from network
 // NOW DOES BYTE SWAPPING HERE - not in audio callback!
@@ -77,14 +76,6 @@ static void* NetworkReader(void *arg) {
         if (bytesRead <= 0) {
             printf("\nSocket closed or error\n");
             break;
-        }
-        
-        // **SWAP BYTES HERE** - do the work in the network thread!
-        // This is NOT time-critical like the audio callback
-        samples = (int16_t *)tempBuffer;
-        sampleCount = bytesRead / 2;
-        for (i = 0; i < sampleCount; i++) {
-            samples[i] = swap_int16(samples[i]);
         }
         
         // Write ALREADY-SWAPPED data to ring buffer
