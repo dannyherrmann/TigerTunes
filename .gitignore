@@ -44,3 +44,4 @@ shairport-sync
 **/project.xcworkspace/xcuserdata/
 **/DerivedData/
 *.xcuserstate
+go-librespot-universal

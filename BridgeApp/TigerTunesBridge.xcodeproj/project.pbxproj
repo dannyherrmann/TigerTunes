@@ -11,7 +11,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 6;
+			dstSubfolderSpec = 7;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -23,11 +23,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		715F65A52F61EC190058BD4B /* Exceptions for "TigerTunesBridge" folder in "Tiger Tunes Bridge" target */ = {
+		71B14FEA3026F4D20020693B /* Exceptions for "TigerTunesBridge" folder in "Tiger Tunes Bridge" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ffmpeg,
-				"go-librespot-static",
+				"go-librespot-universal",
 				"shairport-sync",
 			);
 			target = 71351C652F50A36300318D37 /* Tiger Tunes Bridge */;
@@ -35,17 +35,17 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		715F65A22F61EC0E0058BD4B /* Exceptions for "TigerTunesBridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */ = {
+		71B14FE33026F31B0020693B /* Exceptions for "TigerTunesBridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			attributesByRelativePath = {
 				ffmpeg = (CodeSignOnCopy, );
-				"go-librespot-static" = (CodeSignOnCopy, );
+				"go-librespot-universal" = (CodeSignOnCopy, );
 				"shairport-sync" = (CodeSignOnCopy, );
 			};
 			buildPhase = 717BAE5A2F50A9C200AF9EB1 /* CopyFiles */;
 			membershipExceptions = (
 				ffmpeg,
-				"go-librespot-static",
+				"go-librespot-universal",
 				"shairport-sync",
 			);
 		};
@@ -55,8 +55,8 @@
 		71351C682F50A36300318D37 /* TigerTunesBridge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				715F65A52F61EC190058BD4B /* Exceptions for "TigerTunesBridge" folder in "Tiger Tunes Bridge" target */,
-				715F65A22F61EC0E0058BD4B /* Exceptions for "TigerTunesBridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */,
+				71B14FEA3026F4D20020693B /* Exceptions for "TigerTunesBridge" folder in "Tiger Tunes Bridge" target */,
+				71B14FE33026F31B0020693B /* Exceptions for "TigerTunesBridge" folder in "Copy Files" phase from "Tiger Tunes Bridge" target */,
 			);
 			path = TigerTunesBridge;
 			sourceTree = "<group>";
@@ -294,7 +294,7 @@
 		71351C722F50A36500318D37 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -315,7 +315,7 @@
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				EXCLUDED_ARCHS = x86_64;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -323,7 +323,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielherrmann.Tiger-Tunes-Bridge";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -339,7 +339,7 @@
 		71351C732F50A36500318D37 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -360,7 +360,7 @@
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				EXCLUDED_ARCHS = x86_64;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -368,7 +368,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielherrmann.Tiger-Tunes-Bridge";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

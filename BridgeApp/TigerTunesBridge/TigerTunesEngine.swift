@@ -42,18 +42,28 @@ class TigerTunesEngine: ObservableObject {
     private var imageAccumulator = Data()
     
     // --- The G4 Bridge ---
-    // This replaces the old NWListener and connectedClients array
     private let g4Bridge = G4DiscoveryBridge()
+    
+    // Helper function to resolve binary paths across both Resources and Executables
+    private func resolveBinaryPath(named name: String) -> String? {
+        if let path = Bundle.main.path(forAuxiliaryExecutable: name) {
+            return path
+        }
+        if let path = Bundle.main.path(forResource: name, ofType: nil) {
+            return path
+        }
+        return nil
+    }
 
     func startEngine(api: SpotifyAPIController, mode: BridgeMode) {
         self.selectedMode = mode
         self.isAuthenticated = false
         
-        // 1. Locate binaries
-        guard let goPath = Bundle.main.path(forAuxiliaryExecutable: "go-librespot-static"),
-              let ffmpegPath = Bundle.main.path(forAuxiliaryExecutable: "ffmpeg"),
+        // 1. Locate binaries using fallback resolver
+        guard let goPath = resolveBinaryPath(named: "go-librespot-universal"),
+              let ffmpegPath = resolveBinaryPath(named: "ffmpeg"),
               let bundleSpotifyConfig = Bundle.main.path(forResource: "config", ofType: "yml"),
-              let bundleAirPlayConfig = Bundle.main.path(forResource: "shairport", ofType: "conf") else {
+              let bundleAirPlayConfig = Bundle.main.path(forResource: "shairport", ofType: "conf") else { // Matches "shairport.conf"
             self.appendLog("❌ Error: Binaries missing in bundle.")
             return
         }
@@ -138,7 +148,6 @@ class TigerTunesEngine: ObservableObject {
                 let audioHandle = outputPipe.fileHandleForReading
                 Thread.detachNewThread { [weak self] in
                     while let self = self, self.isRunning {
-                        // Change from 4096 to 8192 (approx 46ms of audio)
                         let data = audioHandle.readData(ofLength: 8192)
                         
                         if data.isEmpty {
@@ -182,10 +191,11 @@ class TigerTunesEngine: ObservableObject {
     
     func startAirPlay() {
         let killTask = Process()
-            killTask.executableURL = URL(fileURLWithPath: "/usr/bin/killall")
-            killTask.arguments = ["-9", "shairport-sync"]
-            try? killTask.run()
-            killTask.waitUntilExit() // Wait for it to finish so the OS releases resources
+        killTask.executableURL = URL(fileURLWithPath: "/usr/bin/killall")
+        killTask.arguments = ["-9", "shairport-sync"]
+        try? killTask.run()
+        killTask.waitUntilExit() // Wait for it to finish so the OS releases resources
+        
         guard let pipeURL = metadataPipeURL else { return }
         let fileManager = FileManager.default
         
@@ -196,7 +206,7 @@ class TigerTunesEngine: ObservableObject {
         do {
             var content = try String(contentsOf: airplayConfigURL, encoding: .utf8)
             
-            // 1. Update/Inject the 'name' (Exactly what you have now)
+            // 1. Update/Inject the 'name'
             let newNameLine = "name = \"\(self.deviceName)\";"
             if let nameRange = content.range(of: #"name\s*=\s*".*";"#, options: .regularExpression) {
                 content.replaceSubrange(nameRange, with: newNameLine)
@@ -204,7 +214,7 @@ class TigerTunesEngine: ObservableObject {
                 content.insert(contentsOf: "\n    \(newNameLine)", at: generalRange.upperBound)
             }
             
-            // 2. Update/Inject the 'pipe_name' (Exactly what you have now)
+            // 2. Update/Inject the 'pipe_name'
             let newPipeLine = "pipe_name = \"\(pipeURL.path)\";"
             if let pipeRange = content.range(of: #"pipe_name\s*=\s*".*";"#, options: .regularExpression) {
                 content.replaceSubrange(pipeRange, with: newPipeLine)
@@ -229,9 +239,15 @@ class TigerTunesEngine: ObservableObject {
         process.executableURL = URL(fileURLWithPath: "/bin/sh")
         process.currentDirectoryURL = stateDir
 
-        // The Shairport executable path
-        guard let shairportPath = Bundle.main.path(forAuxiliaryExecutable: "shairport-sync"),
-              let ffmpegPath = Bundle.main.path(forAuxiliaryExecutable: "ffmpeg") else { return }
+        // Updated binary resolution fallback
+        guard let shairportPath = resolveBinaryPath(named: "shairport-sync"),
+              let ffmpegPath = resolveBinaryPath(named: "ffmpeg") else {
+            appendLog("❌ AirPlay Error: Binaries missing in bundle.")
+            return
+        }
+
+        chmod(shairportPath, 0o755)
+        chmod(ffmpegPath, 0o755)
 
         // THE PIPELINE:
         // 1. Run shairport-sync outputting raw s16le to stdout
@@ -288,8 +304,6 @@ class TigerTunesEngine: ObservableObject {
                                 
                                 let itemContent = String(streamBuffer[startRange.lowerBound..<endRange.upperBound])
                                 
-                                // 🔍 DEBUG LOG: See the raw XML "atoms"
-                                // We truncate the log if it's a PICT (Album Art) to keep the console readable
                                 if itemContent.contains("50494354") { // 50494354 = PICT
                                     print("📡 RAW ATOM: [Album Art Data - Truncated]")
                                 } else {
@@ -333,7 +347,6 @@ class TigerTunesEngine: ObservableObject {
     }
     
     private func parseShairportItem(_ xml: String) {
-        // Extract both code and type
         guard let code = xml.slice(from: "<code>", to: "</code>"),
               let type = xml.slice(from: "<type>", to: "</type>") else { return }
         
@@ -359,7 +372,6 @@ class TigerTunesEngine: ObservableObject {
                 if !imageAccumulator.isEmpty {
                     self.saveAirPlayArtwork(imageAccumulator)
                     
-                    // Notify the G4 with a cache-busting timestamp
                     let payloadString = "ArtUpdate: \(Int(Date().timeIntervalSince1970))\n"
                     if let payloadData = payloadString.data(using: .utf8) {
                         logWithTime("🚀 SENDING TO G4: \(payloadString.trimmingCharacters(in: .whitespacesAndNewlines))")
@@ -374,9 +386,9 @@ class TigerTunesEngine: ObservableObject {
                 self.broadcastSimpleState("State: Playing")
 
             default:
-                break // We'll add 'prgr' (Progress) and 'pvlm' (Volume) here next!
+                break
             }
-            return // Exit: We don't process text metadata for 'ssnc' types
+            return
         }
         
         // ----------------------------------------------------------------
@@ -397,7 +409,7 @@ class TigerTunesEngine: ObservableObject {
                 if let decodedData = Data(base64Encoded: cleanedB64),
                    let value = String(data: decodedData, encoding: .utf8) {
                     
-                    if Double(value) != nil { return } // Skip numeric core atoms
+                    if Double(value) != nil { return }
                     
                     let prefixes: [String: String] = [
                         "title": "Title: ",
@@ -417,7 +429,6 @@ class TigerTunesEngine: ObservableObject {
         }
     }
 
-    // Optional helper to keep the switch clean
     private func broadcastSimpleState(_ stateMessage: String) {
         let formatted = "\(stateMessage)\n"
         if let payloadData = formatted.data(using: .utf8) {
@@ -445,28 +456,24 @@ class TigerTunesEngine: ObservableObject {
         let base64String = parts[1].components(separatedBy: "</data>")[0]
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
-        // Safety check: If the Base64 is too short or just looks like a number, skip it
         if base64String.count < 4 { return nil }
 
         if let decodedData = Data(base64Encoded: base64String),
            let decodedString = String(data: decodedData, encoding: .utf8) {
-            
-            // Final check: Don't return if it's just a raw number string (like volume)
             if Int(decodedString) != nil { return nil }
-            
             return decodedString
         }
         return nil
     }
     
     func stopAirPlay() {
-            shairportProcess?.terminate()
-            shairportProcess = nil
-            appendLog("🛑 AirPlay receiver stopped")
+        shairportProcess?.terminate()
+        shairportProcess = nil
+        appendLog("🛑 AirPlay receiver stopped")
     }
     
     func logoutEngine() {
-        stopEngine() // Must stop the process before deleting its credentials
+        stopEngine()
         
         let fileManager = FileManager.default
         guard let appSupportDir = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else { return }
@@ -478,16 +485,13 @@ class TigerTunesEngine: ObservableObject {
     }
     
     func stopEngine() {
-        // 1. Set isRunning to false immediately to stop the background drain threads
         self.isRunning = false
 
-        // 2. Cleanup Spotify Pipeline (if it exists)
         if let spotifyProcess = goProcess, spotifyProcess.isRunning {
             let pid = spotifyProcess.processIdentifier
             print("🛑 Terminating Spotify Process Group (PID: \(pid))")
             kill(-pid, SIGTERM)
             
-            // Final force-kill if needed
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if spotifyProcess.isRunning {
                     kill(-pid, SIGKILL)
@@ -496,17 +500,12 @@ class TigerTunesEngine: ObservableObject {
         }
         self.goProcess = nil
 
-        // 3. Cleanup AirPlay Pipeline
-        // stopAirPlay() already has a nil check for shairportProcess inside it
         stopAirPlay()
-
-        // 4. Cleanup G4 Network Bridge
         g4Bridge.stop()
 
-        // 5. Final UI Updates
         Task { @MainActor in
             self.isAuthenticated = false
-            self.selectedMode = nil // Reset mode so user can pick again
+            self.selectedMode = nil
             self.appendLog("🛑 Engine Cleaned Up Successfully")
         }
     }
@@ -526,19 +525,13 @@ class TigerTunesEngine: ObservableObject {
 
 extension String {
     func slice(from: String, to: String) -> String? {
-        // Find the start tag
         guard let startRange = self.range(of: from) else { return nil }
-        
-        // Find the end tag, but ONLY looking after the start tag
         guard let endRange = self.range(of: to, range: startRange.upperBound..<self.endIndex) else {
             return nil
         }
-        
-        // Final safety check: ensure the indices are valid and in order
         if startRange.upperBound <= endRange.lowerBound {
             return String(self[startRange.upperBound..<endRange.lowerBound])
         }
-        
         return nil
     }
 }
