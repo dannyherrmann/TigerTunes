@@ -99,7 +99,7 @@ struct ContentView: View {
                             
                             Image(systemName: engine.selectedMode == .airplayOnly ? "airplayaudio" : "antenna.radiowaves.left.and.right")
                                 .font(.system(size: 70))
-                                .symbolEffect(.variableColor.iterative, isActive: engine.isRunning)
+                                .opacity(engine.isRunning ? 1.0 : 0.5)
                                 .foregroundColor(engine.selectedMode == .airplayOnly ? .blue : .green)
                         }
                         
