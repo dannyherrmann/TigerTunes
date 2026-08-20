@@ -25,7 +25,7 @@ Modern streaming services use encryption and security protocols that vintage G4/
 
 ## 🛠 How it Works: The "Bridge & Speaker" Setup
 
-1.  **The Bridge (Modern Mac):** A fully native **Swift (ARM64)** macOS notarized application for Apple Silicon only. It contains static builds of `go-librespot`, `shairport-sync`, and `ffmpeg`. It handles all SSL handshakes, OAuth authentication, and transcode processing. 
+1.  **The Bridge (Modern Mac):** A fully native **Swift** macOS notarized application built as a Universal Binary (x86_64 / ARM64) for both Intel and Apple Silicon Macs. It contains bundled static builds of `go-librespot`, `shairport-sync`, and `ffmpeg`. It handles all SSL handshakes, OAuth authentication, and transcode processing. 
 2.  **The Speaker (Legacy Mac):** Two lightweight Objective-C clients (listed below) that both utilize a custom C-based audio backend that streams the piped raw PCM audio from the modern bridge app directly to the Mac OS Core Audio API so you get to hear the music on your legacy Mac:
     * **Tiger Tunes Controller:** For Spotify Connect sessions.
     * **Tiger Tunes Receiver:** For AirPlay sessions.
